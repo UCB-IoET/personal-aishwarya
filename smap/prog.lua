@@ -5,10 +5,10 @@ LED=require("contrib/lib/led")
 local t={}
 
 --get values for t 
-t.temp= storm.os.get(ledvalue)
+t.temp= storm.os.get(tempvalue)
 t.time= storm.os.get(now())
 
---pack the values
+--pack the valuesd
 print("Packing",t)
 p=storm.mp.pack(t)
 

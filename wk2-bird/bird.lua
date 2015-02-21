@@ -22,7 +22,6 @@ max2 = 2000
 csock = storm.net.udpsocket(math.random(55556, 65535), function() end)
 
 function play_song()
-    print("I'm playing song ", song_id)
     shield.Buzz.start()
     for k=1, table.getn(count) do
      if song_id ~= k then
@@ -37,6 +36,7 @@ function play_song()
      end 
     end --end for loop
  
+    print("I'm playing song ", song_id)
     cur_song=songs[song_id]
     shield.Buzz.go(cur_song*storm.os.MILLISECOND)
     storm.os.invokeLater(500 * storm.os.MILLISECOND, listen)
@@ -66,7 +66,7 @@ end
 
 
 function listen()
-    print("started listening")
+--    print("started listening")
     shield.Buzz.stop()
     song_table = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     song_table[song_id] = song_table[song_id] + 1
@@ -77,7 +77,7 @@ function listen()
     wait2 = math.random(min2, max2)
 
     storm.os.invokeLater(wait1 * storm.os.MILLISECOND, function() 
-                         print("announcing song") 
+  --                       print("announcing song") 
                          storm.net.sendto(csock, tostring(song_id), "ff02::1", sport) 
                      end)
 
